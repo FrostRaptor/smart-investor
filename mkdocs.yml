@@ -1,0 +1,30 @@
+site_name: smart-investor
+repo_url: https://github.com/frostraptor/smart-investor
+site_url: https://frostraptor.github.io/smart-investor
+site_description: ML-based solution to automatee investment strategy on stock market
+site_author: FrostRaptor
+
+nav:
+  - Home: index.md
+  - Modules: modules.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+            setup_commands:
+                - import sys
+                - sys.path.append('../')
+copyright: Maintained by FrostRaptor.
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    primary: white
+    accent: blue
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
