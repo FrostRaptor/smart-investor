@@ -3,16 +3,14 @@ install: ## Install the poetry environment.
 	@poetry install --with dev --with docs
 	@poetry shell
 
-format: ## Format code using isort and black.
-	@echo "🚀 Formatting code: Running isort and black"
-	@poetry run isort .
-	@poetry run black .
+format: ## Format code using ruff.
+	@echo "🚀 Formatting code: Running ruff"
+	@poetry run ruff check --fix .
+	@poetry run ruff format .	
 
-check: ## Check code formatting using isort, black and mypy.
-	@echo "🚀 Checking code formatting: Running isort"
-	@poetry run isort --check-only --diff .
-	@echo "🚀 Checking code formatting: Running black"
-	@poetry run black --check .
+check: ## Check code formatting using ruff and mypy.
+	@echo "🚀 Checking code formatting: Running ruff"
+	@poetry run ruff check .
 	@echo "🚀 Checking code formatting: Running mypy"
 	@poetry run mypy .
 
