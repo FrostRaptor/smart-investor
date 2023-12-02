@@ -1,33 +1,41 @@
-install: ## Install the poetry environment
+install: ## Install the poetry environment.
 	@echo "🚀 Creating virtual environment using pyenv and poetry"
-	@poetry install	
+	@poetry install --with dev --with docs
 	@poetry shell
 
 format: ## Format code using isort and black.
 	@echo "🚀 Formatting code: Running isort and black"
-	@isort .
-	@black .
+	@poetry run isort .
+	@poetry run black .
 
 check: ## Check code formatting using isort, black and mypy.
 	@echo "🚀 Checking code formatting: Running isort"
-	@isort --check-only --diff .
+	@poetry run isort --check-only --diff .
 	@echo "🚀 Checking code formatting: Running black"
-	@black --check .
+	@poetry run black --check .
 	@echo "🚀 Checking code formatting: Running mypy"
-	@mypy .
+	@poetry run mypy .
 
-test: ## Test the code with pytest
+test: ## Test the code with pytest.
 	@echo "🚀 Testing code: Running pytest"
-	@pytest --doctest-modules
+	@poetry run pytest --doctest-modules
 
-build: clean-build ## Build wheel file using poetry
+commit: ## Create a new commit using commitizen.
+	@echo "🚀 Creating a new commit"
+	@poetry run cz commit
+
+bump: ## Bump a new version based on the commits.
+	@echo "🚀 Bumping a new version"
+	@poetry run cz bump
+
+build: clean-build ## Build wheel file using poetry.
 	@echo "🚀 Creating wheel file"
 	@poetry build
 
-clean-build: ## clean build artifacts
+clean-build: ## Clean build artifacts.
 	@rm -rf dist
 
-publish: ## publish a release to pypi.
+publish: ## Publish a release to pypi.
 	@echo "🚀 Publishing: Dry run."
 	@poetry config pypi-token.pypi $(PYPI_TOKEN)
 	@poetry publish --dry-run
@@ -36,10 +44,10 @@ publish: ## publish a release to pypi.
 
 build-and-publish: build publish ## Build and publish.
 
-docs-test: ## Test if documentation can be built without warnings or errors
+docs-test: ## Test if documentation can be built without warnings or errors.
 	@mkdocs build -s
 
-docs: ## Build and serve the documentation
+docs: ## Build and serve the documentation.
 	@mkdocs serve
 
 .PHONY: docs
