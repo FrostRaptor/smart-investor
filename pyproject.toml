@@ -19,9 +19,9 @@ optional = true
 [tool.poetry.group.dev.dependencies]
 commitizen = "^3.12.0"
 pre-commit = "^3.5.0"
-mypy = "^1.7.1"
 pytest = "^7.4.3"
-ruff = "^0.1.6"
+pytest-cov = "^4.0.0"
+tox = "^4.11.1"
 
 [tool.poetry.group.docs]
 optional = true
@@ -29,7 +29,7 @@ optional = true
 [tool.poetry.group.docs.dependencies]
 mkdocs = "^1.5.3"
 mkdocs-material = "^9.4.14"
-mkdocstrings-python = "^1.7.5"
+mkdocstrings = {extras = ["python"], version = "^0.23.0"}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -67,18 +67,36 @@ indent-width = 4
 
 [tool.ruff.lint]
 select = [
-    # pycodestyle
-    "E",
-    # Pyflakes
-    "F",
-    # pyupgrade
-    "UP",
+    # flake8-2020
+    "YTT",
+    # flake8-bandit
+    "S",
     # flake8-bugbear
     "B",
+    # flake8-builtins
+    "A",
+    # flake8-comprehensions
+    "C4",
+    # flake8-debugger
+    "T10",
     # flake8-simplify
     "SIM",
     # isort
     "I",
+    # mccabe
+    "C90",
+    # pycodestyle
+    "E", "W",
+    # pyflakes
+    "F",
+    # pygrep-hooks
+    "PGH",
+    # pyupgrade
+    "UP",
+    # ruff
+    "RUF",
+    # tryceratops
+    "TRY",
 ]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
@@ -101,6 +119,16 @@ skip-magic-trailing-comma = false
 # Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
 
+[tool.ruff.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.coverage.report]
+skip_empty = true
+
+[tool.coverage.run]
+branch = true
+source = ["smart_investor"]
+
 [tool.mypy]
 disallow_untyped_defs = "True"
 disallow_any_unimported = "True"
@@ -109,7 +137,3 @@ check_untyped_defs = "True"
 warn_return_any = "True"
 warn_unused_ignores = "True"
 show_error_codes = "True"
-exclude = [
-    '\.venv',
-    'tests'
-]
