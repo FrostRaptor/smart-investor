@@ -1,0 +1,1 @@
+{"config":{"lang":["en"],"separator":"[\\s\\-]+","pipeline":["stopWordFilter"]},"docs":[{"location":"","title":"smart-investor","text":"<p>ML-based solution to automate investment strategy on stock market</p>"},{"location":"modules/","title":"Modules","text":""}]}
