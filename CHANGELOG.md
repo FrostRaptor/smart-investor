@@ -2,9 +2,4 @@
 
 ### Feat
 
-- add test file
-
-### Fix
-
-- remove test file
-- remove test file
+- base structure of the project
