@@ -1,7 +1,7 @@
 site_name: smart-investor
 repo_url: https://github.com/frostraptor/smart-investor
 site_url: https://frostraptor.github.io/smart-investor
-site_description: ML-based solution to automatee investment strategy on stock market
+site_description: ML-based solution to automate investment strategy on stock market
 site_author: FrostRaptor
 
 nav:
